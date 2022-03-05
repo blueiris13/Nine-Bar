@@ -15,6 +15,8 @@
 		039542D127D30E4D00ABA488 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542D027D30E4D00ABA488 /* NetworkConstants.swift */; };
 		039542D327D30E5C00ABA488 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542D227D30E5C00ABA488 /* NetworkClient.swift */; };
 		039542D527D30E7100ABA488 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542D427D30E7100ABA488 /* NetworkRequest.swift */; };
+		039542D727D33FCE00ABA488 /* SearchResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542D627D33FCE00ABA488 /* SearchResultResponse.swift */; };
+		039542D927D34BE700ABA488 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542D827D34BE700ABA488 /* APIRouter.swift */; };
 		03ACCD0527D0860000B69444 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ACCD0427D0860000B69444 /* AppDelegate.swift */; };
 		03ACCD0727D0860000B69444 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ACCD0627D0860000B69444 /* SceneDelegate.swift */; };
 		03ACCD0C27D0860000B69444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03ACCD0A27D0860000B69444 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 		039542D027D30E4D00ABA488 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		039542D227D30E5C00ABA488 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		039542D427D30E7100ABA488 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		039542D627D33FCE00ABA488 /* SearchResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultResponse.swift; sourceTree = "<group>"; };
+		039542D827D34BE700ABA488 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		03ACCD0127D0860000B69444 /* Nine Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nine Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ACCD0427D0860000B69444 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03ACCD0627D0860000B69444 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			children = (
 				039542CD27D1FA1400ABA488 /* RequestModels */,
 				039542CC27D1FA0400ABA488 /* ResponseModels */,
+				039542D827D34BE700ABA488 /* APIRouter.swift */,
 				039542D227D30E5C00ABA488 /* NetworkClient.swift */,
 				039542D427D30E7100ABA488 /* NetworkRequest.swift */,
 				039542D027D30E4D00ABA488 /* NetworkConstants.swift */,
@@ -124,6 +129,7 @@
 		039542CC27D1FA0400ABA488 /* ResponseModels */ = {
 			isa = PBXGroup;
 			children = (
+				039542D627D33FCE00ABA488 /* SearchResultResponse.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -139,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				039542B827D1DC6800ABA488 /* Assets */,
-				03ACCD1227D0860300B69444 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 		03ACCCF827D0860000B69444 = {
 			isa = PBXGroup;
 			children = (
+				03ACCD1227D0860300B69444 /* Info.plist */,
 				03ACCD0327D0860000B69444 /* Nine Bar */,
 				03ACCD0227D0860000B69444 /* Products */,
 				2CBF31849467ACA1291BD7C4 /* Pods */,
@@ -189,7 +195,6 @@
 				C883FB0F368AF51430AAF88A /* Pods-Nine Bar.debug.xcconfig */,
 				2D5E9BA0619F32B6280BF81A /* Pods-Nine Bar.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -317,10 +322,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				039542D127D30E4D00ABA488 /* NetworkConstants.swift in Sources */,
+				039542D927D34BE700ABA488 /* APIRouter.swift in Sources */,
 				039542C327D1DD2400ABA488 /* FavoritesListViewController.swift in Sources */,
 				039542BF27D1DCF000ABA488 /* ResultsMapViewController.swift in Sources */,
 				039542C527D1DD3E00ABA488 /* CafeDetailViewController.swift in Sources */,
 				039542D527D30E7100ABA488 /* NetworkRequest.swift in Sources */,
+				039542D727D33FCE00ABA488 /* SearchResultResponse.swift in Sources */,
 				03ACCD0527D0860000B69444 /* AppDelegate.swift in Sources */,
 				039542D327D30E5C00ABA488 /* NetworkClient.swift in Sources */,
 				03ACCD0727D0860000B69444 /* SceneDelegate.swift in Sources */,

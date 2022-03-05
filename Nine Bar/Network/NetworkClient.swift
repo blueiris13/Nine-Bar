@@ -7,36 +7,11 @@
 
 import Foundation
 import Alamofire
-
-enum APIRouter: URLRequestConvertible {
-    
-    case businessSearch(searchText: String)
-    case businessDetail
-    
-    // MARK: - HTTPMethod
-    private var method: HTTPMethod {
-        switch self {
-        case .businessSearch, .businessDetail:
-            return .get
+class NetworkClient{
+    static func getSearchResults(latitude: Double, longitude: Double, completion: @escaping (Result<SearchResponse, AFError>) -> Void) {
+        AF.request(APIRouter.businessSearch(latitude: latitude, longitude: longitude, limit: APIParameterValue.limit, categories: APIParameterValue.categories)).responseDecodable {
+            (response: DataResponse<SearchResponse, AFError>) in
+            completion(response.result)
         }
     }
-    
-    
-    // MARK: - Path
-    private var path: String {
-        switch self {
-        case .businessSearch(let searchText):
-            return "/businesses/search"
-        }
-    }
-    
-    
-    func asURLRequest() throws -> URLRequest {
-        <#code#>
-    }
-    
-    
-    
-    
-    
 }

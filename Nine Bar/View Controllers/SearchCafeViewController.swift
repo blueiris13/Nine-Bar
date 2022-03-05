@@ -14,7 +14,17 @@ class SearchCafeViewController: UIViewController {
     
     
     @IBAction func tabSearchButton(_ sender: Any) {
-        performSegue(withIdentifier: "completeSearch", sender: nil)
+        NetworkClient.getSearchResults(latitude: 37.786882, longitude: -122.399972) {
+            result in
+            switch result {
+            case .success(let searchResponse):
+                print(searchResponse)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+//        performSegue(withIdentifier: "completeSearch", sender: nil)
     
     }
     
