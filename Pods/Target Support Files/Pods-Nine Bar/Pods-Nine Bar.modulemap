@@ -1,0 +1,6 @@
+framework module Pods_Nine_Bar {
+  umbrella header "Pods-Nine Bar-umbrella.h"
+
+  export *
+  module * { export * }
+}
