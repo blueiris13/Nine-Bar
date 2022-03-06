@@ -17,7 +17,7 @@ struct BusinessInfo: Codable {
     let name: String
     let imageUrl: String
     let url: String
-    let coordinates: [Coordinate]
+    let coordinates: Coordinate
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,3 +32,7 @@ struct SearchResponse: Codable {
     let total: Int
     let businesses: [BusinessInfo]
 }
+
+//struct SearchResponse: Codable {
+//    let results: ResultsDetail
+//}

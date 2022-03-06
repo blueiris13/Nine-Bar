@@ -19,7 +19,9 @@ class SearchCafeViewController: UIViewController {
             switch result {
             case .success(let searchResponse):
                 print(searchResponse)
+                searchResponse.businesses
             case .failure(let error):
+    
                 print(error.localizedDescription)
             }
         }

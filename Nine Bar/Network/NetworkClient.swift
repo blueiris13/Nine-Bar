@@ -11,6 +11,7 @@ class NetworkClient{
     static func getSearchResults(latitude: Double, longitude: Double, completion: @escaping (Result<SearchResponse, AFError>) -> Void) {
         AF.request(APIRouter.businessSearch(latitude: latitude, longitude: longitude, limit: APIParameterValue.limit, categories: APIParameterValue.categories)).responseDecodable {
             (response: DataResponse<SearchResponse, AFError>) in
+            print(response.result)
             completion(response.result)
         }
     }

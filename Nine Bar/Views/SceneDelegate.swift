@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Nine Bar
 //
-//  Created by Iris on 3/2/22.
+//  Created by Hyun Kim
 //
 
 import UIKit

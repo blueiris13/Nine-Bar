@@ -9,7 +9,7 @@ import Foundation
 
 
 struct YelpServer {
-    static let baseURL = "https://api.yelp.com/v3"
+    static let baseURL = "https://api.yelp.com"
 }
 
 struct APIKey {
