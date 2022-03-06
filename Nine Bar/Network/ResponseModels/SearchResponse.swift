@@ -2,14 +2,14 @@
 //  SearchResultResponse.swift
 //  Nine Bar
 //
-//  Created by Iris on 3/4/22.
+//  Created by Hyun Kim
 //
 
 import Foundation
 
-struct SearchResponse: Codable {
-    let total: Int
-    let businesses: [BusinessInfo]
+struct Coordinate: Codable {
+    let latitude: Double
+    let longitude: Double
 }
 
 struct BusinessInfo: Codable {
@@ -18,7 +18,6 @@ struct BusinessInfo: Codable {
     let imageUrl: String
     let url: String
     let coordinates: [Coordinate]
-    
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -29,7 +28,7 @@ struct BusinessInfo: Codable {
     }
 }
 
-struct Coordinate: Codable {
-    let latitude: Double
-    let longitude: Double
+struct SearchResponse: Codable {
+    let total: Int
+    let businesses: [BusinessInfo]
 }
