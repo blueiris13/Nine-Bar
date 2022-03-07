@@ -8,5 +8,7 @@
 import UIKit
 
 class CafeDetailViewController: UIViewController {
-    
+    override func viewDidLoad() {
+        print("cafeDetailVeiwcontroller")
+    }
 }

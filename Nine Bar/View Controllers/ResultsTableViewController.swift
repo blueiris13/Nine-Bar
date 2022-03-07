@@ -7,6 +7,6 @@
 
 import UIKit
 
-class ResultsTableViewController: UIViewController {
+class ResultsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 }

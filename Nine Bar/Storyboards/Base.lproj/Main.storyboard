@@ -39,7 +39,6 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="tabSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pLt-1L-0gS"/>
-                                            <segue destination="u43-Lm-tJe" kind="presentation" identifier="completeSearch" id="qRH-ew-X3A"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -59,6 +58,7 @@
                     <connections>
                         <outlet property="locationTextfield" destination="xQJ-34-AyA" id="vjb-Gx-pyc"/>
                         <outlet property="searchButton" destination="Vlk-7q-Ssb" id="Iok-fp-c6t"/>
+                        <segue destination="u43-Lm-tJe" kind="presentation" identifier="completeSearch" id="JRY-ZX-PvM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -107,15 +107,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PuI-hE-xE7">
-                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" style="plain" id="MTr-dM-d5Q"/>
+                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" style="plain" id="MTr-dM-d5Q">
+                            <connections>
+                                <action selector="goBackToSearch:" destination="TFQ-aw-nmA" id="bbx-Iy-KoO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backToSearchButton" destination="MTr-dM-d5Q" id="g3p-xe-3IF"/>
                         <outlet property="resultsMapView" destination="umH-cG-6FS" id="FxB-ZF-kla"/>
+                        <segue destination="3sX-cn-mEU" kind="presentation" identifier="showBusinessDetail" id="4Gg-Jy-TcG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7BY-lV-Daz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="683" y="-269"/>
+            <point key="canvasLocation" x="559" y="-362"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gWi-8q-Kik">
@@ -195,7 +201,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gn-G7-Dfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="706" y="1082"/>
+            <point key="canvasLocation" x="472" y="1057"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="1Pu-Ef-zaT">
@@ -220,10 +226,7 @@
                             <outlet property="delegate" destination="WKd-a0-8bu" id="3dd-Fr-fqJ"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem image="chevron.left" catalog="system" style="plain" id="wPR-6E-WgK"/>
-                        <barButtonItem image="chevron.left" catalog="system" style="plain" id="vT6-vK-L1Y"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Asf-5d-Yh4">
                         <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" style="plain" id="TMF-WT-5kk"/>
                     </navigationItem>
@@ -231,14 +234,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="feN-GU-D0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="706" y="413"/>
+            <point key="canvasLocation" x="509" y="329"/>
         </scene>
         <!--Cafe Detail View Controller-->
         <scene sceneID="52F-nm-1wq">
             <objects>
                 <viewController id="3sX-cn-mEU" customClass="CafeDetailViewController" customModule="Nine_Bar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JdC-KH-LOS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="RBX-LH-cLt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -246,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eqC-iF-p9y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1699" y="425"/>
+            <point key="canvasLocation" x="1835" y="104"/>
         </scene>
     </scenes>
     <resources>
