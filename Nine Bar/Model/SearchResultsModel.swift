@@ -2,7 +2,7 @@
 //  SearchResultsModel.swift
 //  Nine Bar
 //
-//  Created by Iris on 3/7/22.
+//  Created by Hyun Kim
 //
 
 import Foundation
