@@ -10,7 +10,7 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     
-    case businessSearch(latitude: Double, longitude: Double, limit: Int, categories: String)
+    case businessSearch(latitude: Double, longitude: Double, limit: Int, categories: String, openNow: Bool, sortBy: String)
     case businessDetail(businessID: String)
     
     // MARK: - HTTPMethod
@@ -34,12 +34,14 @@ enum APIRouter: URLRequestConvertible {
     
     private var queryItems: [URLQueryItem] {
         switch self {
-        case .businessSearch(let latitude, let longitude, let limit, let categories):
+        case .businessSearch(let latitude, let longitude, let limit, let categories, let isOpenNow, let sortBy):
             return [
                 URLQueryItem(name: APIParameterKey.latitude, value: "\(latitude)"),
                 URLQueryItem(name: APIParameterKey.longitude, value: "\(longitude)"),
                 URLQueryItem(name: APIParameterKey.limit, value: "\(limit)"),
-                URLQueryItem(name: APIParameterKey.categories, value: "\(categories)")
+                URLQueryItem(name: APIParameterKey.categories, value: "\(categories)"),
+                URLQueryItem(name: APIParameterKey.openNow, value: "\(isOpenNow)"),
+                URLQueryItem(name: APIParameterKey.sortyBy, value: "\(sortBy)")
             ]
             
         case .businessDetail(let businessID):
@@ -54,8 +56,8 @@ enum APIRouter: URLRequestConvertible {
     
     private var parameters: Parameters? {
         switch self {
-        case .businessSearch(let latitude, let longitude, let limit, let categories):
-            return [APIParameterKey.latitude: latitude, APIParameterKey.longitude: longitude, APIParameterKey.limit: limit, APIParameterKey.categories: categories]
+        case .businessSearch(let latitude, let longitude, let limit, let categories, let isOpenNow, let sortBy):
+            return [APIParameterKey.latitude: latitude, APIParameterKey.longitude: longitude, APIParameterKey.limit: limit, APIParameterKey.categories: categories, APIParameterKey.openNow: isOpenNow, APIParameterKey.sortyBy: sortBy]
         case .businessDetail(let businessID):
             return [APIParameterKey.businessID: businessID]
         }
@@ -79,14 +81,6 @@ enum APIRouter: URLRequestConvertible {
 //        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         urlRequest.setValue(APIKey.key, forHTTPHeaderField: HTTPHeaderField.authentication.rawValue)
         
-        // Parameters
-//        if let parameters = parameters {
-//            do {
-//                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-//            } catch {
-//                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
-//            }
-//        }
         return urlRequest
     }
 }

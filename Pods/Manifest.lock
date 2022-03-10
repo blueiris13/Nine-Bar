@@ -70,6 +70,7 @@ PODS:
   - FlipperKit/SKIOSNetworkPlugin (0.137.0):
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
+  - Kingfisher (7.2.0)
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.1100)
   - RenderCore (0.31)
@@ -91,6 +92,7 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitLayoutComponentKitSupport (~> 0.137.0)
   - FlipperKit/FlipperKitUserDefaultsPlugin (~> 0.137.0)
   - FlipperKit/SKIOSNetworkPlugin (~> 0.137.0)
+  - Kingfisher (~> 7.0)
   - OpenSSL-Universal
 
 SPEC REPOS:
@@ -108,6 +110,7 @@ SPEC REPOS:
     - Flipper-Glog
     - Flipper-PeerTalk
     - FlipperKit
+    - Kingfisher
     - libevent
     - OpenSSL-Universal
     - RenderCore
@@ -129,6 +132,7 @@ SPEC CHECKSUMS:
   Flipper-Glog: 7761f5362d23ead28c19afc2dd1d819f00e40df9
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   FlipperKit: df5f64f3f04dfccb9c3364b704a377b7dabdb9ec
+  Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RenderCore: 090beb17b5bff80b86929a7ceb49df789923d23a
@@ -136,6 +140,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 2b93ebdebf7726992bd89d6ae2113650a09deb51
+PODFILE CHECKSUM: 50f45f10f0864fe305506a60eb24d988ef5e3ecf
 
 COCOAPODS: 1.11.2

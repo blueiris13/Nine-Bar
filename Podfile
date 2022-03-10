@@ -8,6 +8,9 @@ target 'Nine Bar' do
 
   # Pods for Nine Bar
   pod 'Alamofire', '~> 5.5.0'
+
+  pod 'Kingfisher', '~> 7.0'
+
   # Flipper
   pod 'FlipperKit', '~>' + flipperkit_version, :configuration => 'Debug'
   pod 'FlipperKit/FlipperKitLayoutComponentKitSupport', '~>' + flipperkit_version, :configuration => 'Debug'
