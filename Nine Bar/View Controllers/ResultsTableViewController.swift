@@ -12,10 +12,16 @@ class ResultsTableViewController: UITableViewController {
     
     @IBOutlet var resultsTableView: UITableView!
     
+    var selectedBusinessID: String!
     
     func convertMeterToMile(distanceInMeters: Double) -> Double {
         let distanceInMiles = distanceInMeters * 0.000621
         return distanceInMiles
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = segue.destination as! CafeDetailViewController
+        detailVC.businessID = self.selectedBusinessID
     }
     
     // MARK: Tableview Delegate
@@ -50,6 +56,10 @@ class ResultsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let businessInfo = SearchResultsModel.businesses[(indexPath as NSIndexPath).row]
+        self.selectedBusinessID = businessInfo.id
+        print(self.selectedBusinessID)
         performSegue(withIdentifier: "showBusinessDetail", sender: nil)
     }
     

@@ -27,7 +27,7 @@ enum APIRouter: URLRequestConvertible {
         case .businessSearch:
             return "/v3/businesses/search"
         case .businessDetail(let id):
-            return "/businesses/\(id)"
+            return "/v3/businesses/\(id)"
         }
         
     }
@@ -43,12 +43,8 @@ enum APIRouter: URLRequestConvertible {
                 URLQueryItem(name: APIParameterKey.openNow, value: "\(isOpenNow)"),
                 URLQueryItem(name: APIParameterKey.sortyBy, value: "\(sortBy)")
             ]
-            
-        case .businessDetail(let businessID):
-            return [
-                // TODO: /businesses/{id} this is a new endpoint, not parameter.
-                URLQueryItem(name: "businessID", value: businessID)
-            ]
+        case .businessDetail:
+            return []
         }
     }
     
@@ -58,8 +54,8 @@ enum APIRouter: URLRequestConvertible {
         switch self {
         case .businessSearch(let latitude, let longitude, let limit, let categories, let isOpenNow, let sortBy):
             return [APIParameterKey.latitude: latitude, APIParameterKey.longitude: longitude, APIParameterKey.limit: limit, APIParameterKey.categories: categories, APIParameterKey.openNow: isOpenNow, APIParameterKey.sortyBy: sortBy]
-        case .businessDetail(let businessID):
-            return [APIParameterKey.businessID: businessID]
+        case .businessDetail:
+            return [:]
         }
     }
     

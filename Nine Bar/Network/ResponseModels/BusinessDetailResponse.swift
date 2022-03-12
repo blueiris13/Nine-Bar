@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Photo: Codable {
-    let photo: String
-}
+//struct Photo: Codable {
+//    let photo: String
+//}
 
 struct Hours: Codable {
     let isOpenNow: Bool
@@ -24,9 +24,10 @@ struct BusinessDetailResponse: Codable {
     let url: String
     let phone: String
     let displayPhone: String
-    let photos: [Photo]
+    let photos: [String]
     let hours: [Hours]
-
+    let imageUrl: String
+    
     enum CodingKeys: String, CodingKey {
         case name
         case url
@@ -34,5 +35,6 @@ struct BusinessDetailResponse: Codable {
         case displayPhone = "display_phone"
         case photos
         case hours
+        case imageUrl = "image_url"
     }
 }

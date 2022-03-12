@@ -14,6 +14,7 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var backToSearchButton: UIBarButtonItem!
     
     var resultCoordinate: CLLocationCoordinate2D!
+    var selectedBusinessID: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
             annotation.title = "\(businessName)"
+            annotation.subtitle = businessLocation.id
             
             annotations.append(annotation)
         }
@@ -48,12 +50,30 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        performSegue(withIdentifier: "showBusinessDetail", sender: nil)
+        self.selectedBusinessID = view.annotation?.subtitle ?? ""
+        
+        NetworkClient.getBusinessDetail(businessID: self.selectedBusinessID) {
+            result in
+            switch result {
+            case .success(let detailResponse):
+                print("request successful!!!")
+                print(detailResponse)
+                BusinessDetailModel.businessDetail = detailResponse
+                self.performSegue(withIdentifier: "showBusinessDetail", sender: nil)
+
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = segue.destination as! CafeDetailViewController
+        detailVC.businessID = self.selectedBusinessID
     }
         
     func zoomInToLocation(coordinate: CLLocationCoordinate2D) {
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
         resultsMapView.setRegion(coordinateRegion, animated: true)
     }
-    
 }

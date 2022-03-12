@@ -13,6 +13,4 @@ class BusinessResultsCell: UITableViewCell {
     @IBOutlet weak var businessNameLabel: UILabel!
     @IBOutlet weak var businessDistanceLabel: UILabel!
     @IBOutlet weak var openNowLabel: UILabel!
-    @IBOutlet weak var getDirectionButton: UIButton!
-    
 }
