@@ -23,6 +23,7 @@
 		039542E127D824D300ABA488 /* BusinessDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542E027D824D300ABA488 /* BusinessDetailResponse.swift */; };
 		039542E327DAE03300ABA488 /* BusinessDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542E227DAE03300ABA488 /* BusinessDetailModel.swift */; };
 		039542E527DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542E427DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift */; };
+		039542E727DDD30A00ABA488 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542E627DDD30A00ABA488 /* DataController.swift */; };
 		03ACCD0527D0860000B69444 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ACCD0427D0860000B69444 /* AppDelegate.swift */; };
 		03ACCD0727D0860000B69444 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ACCD0627D0860000B69444 /* SceneDelegate.swift */; };
 		03ACCD0C27D0860000B69444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03ACCD0A27D0860000B69444 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		039542E027D824D300ABA488 /* BusinessDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailResponse.swift; sourceTree = "<group>"; };
 		039542E227DAE03300ABA488 /* BusinessDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailModel.swift; sourceTree = "<group>"; };
 		039542E427DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		039542E627DDD30A00ABA488 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		03ACCD0127D0860000B69444 /* Nine Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nine Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ACCD0427D0860000B69444 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03ACCD0627D0860000B69444 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				039542DA27D6A66C00ABA488 /* SearchResultsModel.swift */,
 				039542E227DAE03300ABA488 /* BusinessDetailModel.swift */,
+				039542E627DDD30A00ABA488 /* DataController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				039542D527D30E7100ABA488 /* NetworkRequest.swift in Sources */,
 				039542E527DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift in Sources */,
 				039542D727D33FCE00ABA488 /* SearchResponse.swift in Sources */,
+				039542E727DDD30A00ABA488 /* DataController.swift in Sources */,
 				03ACCD0527D0860000B69444 /* AppDelegate.swift in Sources */,
 				039542D327D30E5C00ABA488 /* NetworkClient.swift in Sources */,
 				039542E327DAE03300ABA488 /* BusinessDetailModel.swift in Sources */,
