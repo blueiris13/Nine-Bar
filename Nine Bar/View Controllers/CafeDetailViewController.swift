@@ -29,7 +29,10 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     var imageArray = [UIImage]()
     
     var imgArray = [UIImage(named: "hello"), UIImage(named: "hello"), UIImage(named: "hello")]
-        
+    
+    var favorite: Bool = false
+    
+    
     override func viewDidLoad() {
         
         
@@ -110,8 +113,16 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     @IBAction func addToFavorites(_ sender: Any) {
-//        let store = Store(context: DataController.shared.viewContext)
-//        store.name = BusinessDetailModel.businessDetail.name
+        let store = Store(context: DataController.shared.viewContext)
+        store.name = BusinessDetailModel.businessDetail.name
+        try? DataController.shared.viewContext.save()
+        
+        favorite = true
+        
+        if favorite {
+            favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+        }
+        
     }
     
     // MARK: Collection View Delegate
@@ -127,5 +138,4 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.cellImageView.image = imgArray[(indexPath as NSIndexPath).row]
         return cell
     }
-
 }
