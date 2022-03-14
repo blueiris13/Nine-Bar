@@ -15,27 +15,31 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var pageView: UIPageControl!
     
-    
     @IBOutlet weak var storeProfileImageView: UIImageView!
     
-    
+    @IBOutlet weak var businessName: UILabel!
+
+    @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var websiteButton: UIButton!
+    @IBOutlet weak var directionButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+      
     var businessID: String = ""
-    
-    var timer = Timer()
-    var counter = 0
     
     var imageArray = [UIImage]()
     
     var imgArray = [UIImage(named: "hello"), UIImage(named: "hello"), UIImage(named: "hello")]
-    
-    
+        
     override func viewDidLoad() {
-            
+        
+        
+        
+        
         for imageUrl in BusinessDetailModel.businessDetail.photos {
             self.downloadImage(urlString: imageUrl)
         }
-        print("hello")
-        print(self.imageArray)
+        
+        businessName.text = BusinessDetailModel.businessDetail.name
         
         let url = URL(string: BusinessDetailModel.businessDetail.imageUrl)
         storeProfileImageView.kf.setImage(with: url)
@@ -56,19 +60,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
 //            case .failure(let error):
 //                print(error.localizedDescription)
 //            }
-            
-//            print(self.imageArray)
-//            if self.imgArray.count > 0 {
-//                self.pageView.numberOfPages = self.imgArray.count
-//                self.pageView.currentPage = 0
-//                DispatchQueue.main.async {
-//                    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.slidingImage), userInfo: nil, repeats: true)
-//                print("hello?")
-//                }
-//            self.imageCollectionView.reloadData()
-//
-//            }
-//        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,28 +87,33 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         })
     }
-    
-    @objc func slidingImage(){
-        
-        if counter < imgArray.count {
-            let index = IndexPath.init(item: counter, section: 0)
-            self.imageCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            pageView.currentPage = counter
-            counter += 1
-        } else {
-            counter = 0
-            let index = IndexPath.init(item:counter, section: 0)
-            self.imageCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
-            pageView.currentPage = counter
-            counter = 1
-        }
-    }
-
-    
+     
     @IBAction func dismissView(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
+    // MARK: Button Actions
+    
+    @IBAction func callStore(_ sender: Any) {
+        if let url = URL(string: "tel://" + BusinessDetailModel.businessDetail.phone) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @IBAction func openStoreWebsite(_ sender: Any) {
+        if let url = URL(string: BusinessDetailModel.businessDetail.url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @IBAction func getDirection(_ sender: Any) {
+    }
+    
+    @IBAction func addToFavorites(_ sender: Any) {
+//        let store = Store(context: DataController.shared.viewContext)
+//        store.name = BusinessDetailModel.businessDetail.name
+    }
+    
     // MARK: Collection View Delegate
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

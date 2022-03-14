@@ -415,7 +415,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="32M-pu-mvS">
                                                 <rect key="frame" x="0.0" y="0.0" width="224" height="130"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fn0-lR-IaU">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fn0-lR-IaU">
                                                         <rect key="frame" x="0.0" y="0.0" width="224" height="130"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -443,21 +443,33 @@
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="phone" catalog="system"/>
+                                        <connections>
+                                            <action selector="callStore:" destination="3sX-cn-mEU" eventType="touchUpInside" id="0cg-ak-NJo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtd-wW-Hiw">
                                         <rect key="frame" x="100" y="0.0" width="45.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.up.forward.app" catalog="system"/>
+                                        <connections>
+                                            <action selector="openStoreWebsite:" destination="3sX-cn-mEU" eventType="touchUpInside" id="aB4-Uf-aL5"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0LY-vF-VNn">
                                         <rect key="frame" x="200.5" y="0.0" width="47" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="map" catalog="system"/>
+                                        <connections>
+                                            <action selector="getDirection:" destination="3sX-cn-mEU" eventType="touchUpInside" id="QBg-dR-gY3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pec-rg-B0H">
                                         <rect key="frame" x="302.5" y="0.0" width="45.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                        <connections>
+                                            <action selector="addToFavorites:" destination="3sX-cn-mEU" eventType="touchUpInside" id="ahi-uU-ljV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -517,10 +529,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="businessName" destination="Fn0-lR-IaU" id="IUs-IF-sWf"/>
+                        <outlet property="callButton" destination="Tkf-bC-Szx" id="KOu-Ex-7ct"/>
                         <outlet property="closeButton" destination="rOf-Fq-JwH" id="vJA-VN-ZNw"/>
+                        <outlet property="directionButton" destination="0LY-vF-VNn" id="zrH-PG-E8X"/>
+                        <outlet property="favoriteButton" destination="Pec-rg-B0H" id="eSh-MF-Tzg"/>
                         <outlet property="imageCollectionView" destination="BPN-Cf-G0P" id="Ov0-yG-3Li"/>
                         <outlet property="pageView" destination="oOd-yc-N2g" id="Zp8-vO-NQh"/>
                         <outlet property="storeProfileImageView" destination="1RJ-e9-HpP" id="Bk3-tH-A5S"/>
+                        <outlet property="websiteButton" destination="jtd-wW-Hiw" id="o0x-ke-aOT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eqC-iF-p9y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

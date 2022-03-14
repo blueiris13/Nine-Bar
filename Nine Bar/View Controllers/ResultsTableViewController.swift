@@ -61,6 +61,8 @@ class ResultsTableViewController: UITableViewController {
         self.selectedBusinessID = businessInfo.id
         print(self.selectedBusinessID)
         performSegue(withIdentifier: "showBusinessDetail", sender: nil)
+    
+        resultsTableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -65,8 +65,9 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
                 print(error.localizedDescription)
             }
         }
+        resultsMapView.deselectAnnotation(view.annotation, animated: true)
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! CafeDetailViewController
         detailVC.businessID = self.selectedBusinessID
