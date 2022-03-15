@@ -68,10 +68,10 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
         resultsMapView.deselectAnnotation(view.annotation, animated: true)
     }
         
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let detailVC = segue.destination as! CafeDetailViewController
-        detailVC.businessID = self.selectedBusinessID
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let detailVC = segue.destination as! CafeDetailViewController
+//        detailVC.businessID = self.selectedBusinessID
+//    }
         
     func zoomInToLocation(coordinate: CLLocationCoordinate2D) {
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)

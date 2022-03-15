@@ -19,10 +19,10 @@ class ResultsTableViewController: UITableViewController {
         return distanceInMiles
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let detailVC = segue.destination as! CafeDetailViewController
-        detailVC.businessID = self.selectedBusinessID
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let detailVC = segue.destination as! CafeDetailViewController
+//        detailVC.businessID = self.selectedBusinessID
+//    }
     
     // MARK: Tableview Delegate
     
@@ -60,8 +60,17 @@ class ResultsTableViewController: UITableViewController {
         let businessInfo = SearchResultsModel.businesses[(indexPath as NSIndexPath).row]
         self.selectedBusinessID = businessInfo.id
         print(self.selectedBusinessID)
-        performSegue(withIdentifier: "showBusinessDetail", sender: nil)
-    
+        
+        NetworkClient.getBusinessDetail(businessID: self.selectedBusinessID) {
+                result in
+            switch result {
+            case .success(let detailResponse):
+                BusinessDetailModel.businessDetail = detailResponse
+                self.performSegue(withIdentifier: "showBusinessDetail", sender: nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         resultsTableView.deselectRow(at: indexPath, animated: true)
     }
     

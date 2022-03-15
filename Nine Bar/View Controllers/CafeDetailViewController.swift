@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -32,11 +33,25 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var favorite: Bool = false
     
+    var stores = [Store]()
+    
+    var storeIndex = 0
     
     override func viewDidLoad() {
         
+        businessID = BusinessDetailModel.businessDetail.id
         
+        let storeFetchRequest: NSFetchRequest<Store> = Store.fetchRequest()
+        if let result = try? DataController.shared.viewContext.fetch(storeFetchRequest) {
+            stores = result
+        }
         
+        for store in stores {
+            if store.id == businessID {
+                favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+                favorite = true
+            }
+        }
         
         for imageUrl in BusinessDetailModel.businessDetail.photos {
             self.downloadImage(urlString: imageUrl)
@@ -49,6 +64,16 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         storeProfileImageView.layer.cornerRadius = 15.0
         storeProfileImageView.clipsToBounds = true
         
+        print("this is BusinessDetailModel.businessDetail.photos")
+        print(BusinessDetailModel.businessDetail.photos)
+        
+        for imageUrl in BusinessDetailModel.businessDetail.photos {
+            self.downloadImage(urlString: imageUrl)
+        }
+        
+        
+        
+
 //        NetworkClient.getBusinessDetail(businessID: self.businessID) {
 //            result in
 //            switch result {
@@ -66,12 +91,8 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.imageCollectionView.reloadData()
-    }
 
-    
+        
     func downloadImage(urlString: String) {
         let url = URL(string: urlString)!
         let resource = ImageResource(downloadURL: url, cacheKey: "temp")
@@ -82,11 +103,10 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
 //                print("download image has been successfully done")
 //                print("Image: \(result.image). Got from: \(result.cacheType)")
                 self.imageArray.append(result.image)
-                print(self.imageArray)
+
                 self.imageCollectionView.reloadData()
             case .failure(let error):
                 print("Error: \(error)")
-
             }
         })
     }
@@ -113,8 +133,27 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     @IBAction func addToFavorites(_ sender: Any) {
+       
+        // If the selected store is already in the favorite list, skip the add.
+        if favorite {
+//            let alertVC = UIAlertController(title: "Remove from Favorites?", message: "", preferredStyle: .alert)
+//            alertVC.addAction(UIAlertAction(title: "OK", style: .default) {
+//
+//                let favoriteToDelete = self.stores[]
+//
+//            }
+            return
+        }
+        
         let store = Store(context: DataController.shared.viewContext)
+        
+        // Save the business id, name, and profile image
+        store.id = BusinessDetailModel.businessDetail.id
         store.name = BusinessDetailModel.businessDetail.name
+        
+        let imageData = self.storeProfileImageView.image?.pngData()
+        store.image = imageData
+        
         try? DataController.shared.viewContext.save()
         
         favorite = true
@@ -122,20 +161,20 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         if favorite {
             favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
         }
-        
     }
     
     // MARK: Collection View Delegate
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imgArray.count
+        return imageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("hello???")
+        print("this is imageArray")
+        print(self.imageArray)
 
         let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "imageViewCell", for: indexPath) as! CafeDetailCollectionViewCell
-        cell.cellImageView.image = imgArray[(indexPath as NSIndexPath).row]
+        cell.cellImageView.image = imageArray[(indexPath as NSIndexPath).row]
         return cell
     }
 }

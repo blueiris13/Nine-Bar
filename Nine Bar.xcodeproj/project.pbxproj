@@ -24,7 +24,6 @@
 		039542E527DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542E427DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift */; };
 		039542E727DDD30A00ABA488 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542E627DDD30A00ABA488 /* DataController.swift */; };
 		039542EA27DF18EF00ABA488 /* NineBar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 039542E827DF18EF00ABA488 /* NineBar.xcdatamodeld */; };
-		039542EC27DF295F00ABA488 /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542EB27DF295F00ABA488 /* StoreModel.swift */; };
 		039542EE27DF29DC00ABA488 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039542ED27DF29DC00ABA488 /* FavoritesCell.swift */; };
 		03ACCD0527D0860000B69444 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ACCD0427D0860000B69444 /* AppDelegate.swift */; };
 		03ACCD0727D0860000B69444 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ACCD0627D0860000B69444 /* SceneDelegate.swift */; };
@@ -52,7 +51,6 @@
 		039542E427DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		039542E627DDD30A00ABA488 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		039542E927DF18EF00ABA488 /* NineBar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NineBar.xcdatamodel; sourceTree = "<group>"; };
-		039542EB27DF295F00ABA488 /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		039542ED27DF29DC00ABA488 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		03ACCD0127D0860000B69444 /* Nine Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nine Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ACCD0427D0860000B69444 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				039542DA27D6A66C00ABA488 /* SearchResultsModel.swift */,
 				039542E227DAE03300ABA488 /* BusinessDetailModel.swift */,
 				039542E627DDD30A00ABA488 /* DataController.swift */,
-				039542EB27DF295F00ABA488 /* StoreModel.swift */,
 				039542E827DF18EF00ABA488 /* NineBar.xcdatamodeld */,
 			);
 			path = Model;
@@ -358,7 +355,6 @@
 				039542E527DC0CEC00ABA488 /* CafeDetailCollectionViewCell.swift in Sources */,
 				039542EE27DF29DC00ABA488 /* FavoritesCell.swift in Sources */,
 				039542D727D33FCE00ABA488 /* SearchResponse.swift in Sources */,
-				039542EC27DF295F00ABA488 /* StoreModel.swift in Sources */,
 				039542E727DDD30A00ABA488 /* DataController.swift in Sources */,
 				03ACCD0527D0860000B69444 /* AppDelegate.swift in Sources */,
 				039542D327D30E5C00ABA488 /* NetworkClient.swift in Sources */,

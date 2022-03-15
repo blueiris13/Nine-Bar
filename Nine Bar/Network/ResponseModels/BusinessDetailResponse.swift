@@ -20,6 +20,7 @@ struct Hours: Codable {
 }
 
 struct BusinessDetailResponse: Codable {
+    let id: String
     let name: String
     let url: String
     let phone: String
@@ -29,6 +30,7 @@ struct BusinessDetailResponse: Codable {
     let imageUrl: String
     
     enum CodingKeys: String, CodingKey {
+        case id
         case name
         case url
         case phone

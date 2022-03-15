@@ -29,7 +29,6 @@ enum APIRouter: URLRequestConvertible {
         case .businessDetail(let id):
             return "/v3/businesses/\(id)"
         }
-        
     }
     
     private var queryItems: [URLQueryItem] {
@@ -66,15 +65,12 @@ enum APIRouter: URLRequestConvertible {
         urlComponents?.path = path
         urlComponents?.queryItems = queryItems
 
-            
         var urlRequest = URLRequest(url: (urlComponents?.url)!)
-    
         
         //HTTP Method
         urlRequest.httpMethod = method.rawValue
         
         // Common Headers
-//        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         urlRequest.setValue(APIKey.key, forHTTPHeaderField: HTTPHeaderField.authentication.rawValue)
         
         return urlRequest
