@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+
 class FavoritesListViewController: UITableViewController {
     
     @IBOutlet var favoritesTableView: UITableView!
@@ -22,6 +23,22 @@ class FavoritesListViewController: UITableViewController {
             stores = result
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favoritesTableView.reloadData()
+    }
+    
+    func deleteStore(at: IndexPath) {
+        let storeToDelete = stores[(at).row]
+        DataController.shared.viewContext.delete(storeToDelete)
+        try? DataController.shared.viewContext.save()
+        
+        stores.remove(at: at.row)
+        favoritesTableView.reloadData()
+    }
+    
+    // MARK: Table View Delegate
      
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stores.count
@@ -62,19 +79,10 @@ class FavoritesListViewController: UITableViewController {
         return 110.0
     }
     
-    func deleteStore(at: IndexPath) {
-        let storeToDelete = stores[(at).row]
-        DataController.shared.viewContext.delete(storeToDelete)
-        try? DataController.shared.viewContext.save()
-        
-        stores.remove(at: at.row)
-        favoritesTableView.reloadData()
-    }
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete: deleteStore(at: indexPath)
-        default: () // Unsupported
+        default: ()
         }
     }
 }

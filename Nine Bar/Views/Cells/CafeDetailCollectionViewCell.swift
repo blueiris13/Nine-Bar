@@ -5,7 +5,6 @@
 //  Created by Hyun Kim
 //
 
-import Foundation
 import UIKit
 class CafeDetailCollectionViewCell: UICollectionViewCell{
     

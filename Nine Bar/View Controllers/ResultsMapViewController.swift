@@ -20,7 +20,8 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
         super.viewDidLoad()
         print("segue successful")
         print(self.resultCoordinate)
-        self.zoomInToLocation(coordinate: resultCoordinate)
+        
+        zoomInToLocation(mapView: self.resultsMapView, coordinate: self.resultCoordinate, latMeters: 3000, longMeters: 3000)
         self.addAnnotions(businessesLocations: SearchResultsModel.businesses)
     }
     
@@ -73,8 +74,5 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
 //        detailVC.businessID = self.selectedBusinessID
 //    }
         
-    func zoomInToLocation(coordinate: CLLocationCoordinate2D) {
-        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
-        resultsMapView.setRegion(coordinateRegion, animated: true)
-    }
+
 }

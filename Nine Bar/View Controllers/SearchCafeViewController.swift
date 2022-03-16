@@ -69,7 +69,7 @@ class SearchCafeViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func getCoordinate( addressString: String, completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void) {
+    private func getCoordinate( addressString: String, completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(addressString) {(placemarks, error) in
             if error == nil {

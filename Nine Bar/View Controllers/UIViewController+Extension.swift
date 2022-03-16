@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 extension UIViewController {
     
@@ -19,4 +20,10 @@ extension UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
+    
+    func zoomInToLocation(mapView: MKMapView, coordinate: CLLocationCoordinate2D, latMeters: Double, longMeters: Double) {
+        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: latMeters, longitudinalMeters: longMeters)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
 }

@@ -190,25 +190,25 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhY-oq-YB6">
-                                            <rect key="frame" x="130" y="20" width="125" height="52.5"/>
+                                            <rect key="frame" x="130" y="20" width="120" height="52.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Rg-j4-BE5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="52.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="52.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Business Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kev-Hi-uW7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="125" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0m-Ih-FYg">
-                                                            <rect key="frame" x="0.0" y="20.5" width="125" height="16"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="120" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1U-v6-Hxc">
-                                                            <rect key="frame" x="0.0" y="36.5" width="125" height="16"/>
+                                                            <rect key="frame" x="0.0" y="36.5" width="120" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -465,7 +465,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fn0-lR-IaU">
                                                         <rect key="frame" x="0.0" y="0.0" width="225" height="110"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -584,6 +584,7 @@
                         <outlet property="favoriteButton" destination="Pec-rg-B0H" id="eSh-MF-Tzg"/>
                         <outlet property="imageCollectionView" destination="BPN-Cf-G0P" id="Ov0-yG-3Li"/>
                         <outlet property="pageView" destination="oOd-yc-N2g" id="Zp8-vO-NQh"/>
+                        <outlet property="storeMapView" destination="bJb-Gv-kpA" id="11O-qJ-iGu"/>
                         <outlet property="storeProfileImageView" destination="1RJ-e9-HpP" id="Bk3-tH-A5S"/>
                         <outlet property="websiteButton" destination="jtd-wW-Hiw" id="o0x-ke-aOT"/>
                     </connections>
@@ -594,7 +595,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4Gg-Jy-TcG"/>
+        <segue reference="es4-a5-9CN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.forward.app" catalog="system" width="128" height="114"/>

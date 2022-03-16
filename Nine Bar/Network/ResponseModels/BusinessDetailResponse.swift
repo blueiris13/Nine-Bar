@@ -28,6 +28,7 @@ struct BusinessDetailResponse: Codable {
     let photos: [String]
     let hours: [Hours]
     let imageUrl: String
+    let coordinates: Coordinate
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -38,5 +39,6 @@ struct BusinessDetailResponse: Codable {
         case photos
         case hours
         case imageUrl = "image_url"
+        case coordinates
     }
 }

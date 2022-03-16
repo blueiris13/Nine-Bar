@@ -2,10 +2,9 @@
 //  FavoritesCell.swift
 //  Nine Bar
 //
-//  Created by Iris on 3/14/22.
+//  Created by Hyun Kim
 //
 
-import Foundation
 import UIKit
 
 class FavoritesCell: UITableViewCell {

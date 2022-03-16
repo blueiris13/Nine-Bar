@@ -8,8 +8,9 @@
 import UIKit
 import Kingfisher
 import CoreData
+import MapKit
 
-class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate {
 
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var closeButton: UIBarButtonItem!
@@ -25,17 +26,17 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var directionButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
       
+    @IBOutlet weak var storeMapView: MKMapView!
+    
     var businessID: String = ""
-    
-    var imageArray = [UIImage]()
-    
-    var imgArray = [UIImage(named: "hello"), UIImage(named: "hello"), UIImage(named: "hello")]
     
     var favorite: Bool = false
     
     var stores = [Store]()
     
     var storeIndex = 0
+    
+    var storeCoordinate: CLLocationCoordinate2D!
     
     override func viewDidLoad() {
         
@@ -53,10 +54,6 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
         
-        for imageUrl in BusinessDetailModel.businessDetail.photos {
-            self.downloadImage(urlString: imageUrl)
-        }
-        
         businessName.text = BusinessDetailModel.businessDetail.name
         
         let url = URL(string: BusinessDetailModel.businessDetail.imageUrl)
@@ -64,15 +61,12 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         storeProfileImageView.layer.cornerRadius = 15.0
         storeProfileImageView.clipsToBounds = true
         
-        print("this is BusinessDetailModel.businessDetail.photos")
-        print(BusinessDetailModel.businessDetail.photos)
         
-        for imageUrl in BusinessDetailModel.businessDetail.photos {
-            self.downloadImage(urlString: imageUrl)
-        }
+        // Setting map view
+        self.storeCoordinate = self.createCoordinate()
+        self.addAnnotation()
         
-        
-        
+        zoomInToLocation(mapView: self.storeMapView, coordinate: storeCoordinate, latMeters: 1000, longMeters: 1000)
 
 //        NetworkClient.getBusinessDetail(businessID: self.businessID) {
 //            result in
@@ -91,31 +85,11 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
     }
     
-
-        
-    func downloadImage(urlString: String) {
-        let url = URL(string: urlString)!
-        let resource = ImageResource(downloadURL: url, cacheKey: "temp")
-
-        KingfisherManager.shared.retrieveImage(with: resource, completionHandler: { result in
-            switch result {
-            case .success(let result):
-//                print("download image has been successfully done")
-//                print("Image: \(result.image). Got from: \(result.cacheType)")
-                self.imageArray.append(result.image)
-
-                self.imageCollectionView.reloadData()
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-        })
-    }
-     
+    // MARK: Button Actions
+    
     @IBAction func dismissView(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    // MARK: Button Actions
     
     @IBAction func callStore(_ sender: Any) {
         if let url = URL(string: "tel://" + BusinessDetailModel.businessDetail.phone) {
@@ -130,7 +104,15 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     @IBAction func getDirection(_ sender: Any) {
+        
+        if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
+            UIApplication.shared.open(URL(string:"comgooglemaps://?saddr=&daddr=\(self.storeCoordinate.latitude),\(self.storeCoordinate.longitude)&directionsmode=driving")!)
+        } else {
+            NSLog("Can't open with Google Map")
+        }
     }
+        
+    
     
     @IBAction func addToFavorites(_ sender: Any) {
        
@@ -166,15 +148,33 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     // MARK: Collection View Delegate
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageArray.count
+        return BusinessDetailModel.businessDetail.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("this is imageArray")
-        print(self.imageArray)
 
         let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "imageViewCell", for: indexPath) as! CafeDetailCollectionViewCell
-        cell.cellImageView.image = imageArray[(indexPath as NSIndexPath).row]
+        
+        let url = URL(string: BusinessDetailModel.businessDetail.photos[(indexPath).row])
+        cell.cellImageView.kf.setImage(with: url)
         return cell
+    }
+    
+    // MARK: Map View related functions
+    
+    private func createCoordinate() -> CLLocationCoordinate2D {
+        let lat = CLLocationDegrees(BusinessDetailModel.businessDetail.coordinates.latitude)
+        let long = CLLocationDegrees(BusinessDetailModel.businessDetail.coordinates.longitude)
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        
+        return coordinate
+    }
+    
+    private func addAnnotation(){
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = self.storeCoordinate
+        
+        self.storeMapView.addAnnotation(annotation)
     }
 }
