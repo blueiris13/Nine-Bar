@@ -28,7 +28,7 @@ struct APIParameterKey{
 
 struct APIParameterValue {
     static let categories = "coffee,coffeeshop,coffeeroasteries"
-    static let limit = 5
+    static let limit = 10
     static let businessID = "some ddd"
     static let isOpenNow = true
     static let sortBy = "distance"

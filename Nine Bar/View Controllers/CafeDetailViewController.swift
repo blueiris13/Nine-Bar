@@ -34,7 +34,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var stores = [Store]()
     
-    var storeIndex = 0
+    var store: Store!
     
     var storeCoordinate: CLLocationCoordinate2D!
     
@@ -49,6 +49,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
         for store in stores {
             if store.id == businessID {
+                self.store = store
                 favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
                 favorite = true
             }
@@ -61,27 +62,11 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         storeProfileImageView.layer.cornerRadius = 15.0
         storeProfileImageView.clipsToBounds = true
         
-        
         // Setting map view
         self.storeCoordinate = self.createCoordinate()
         self.addAnnotation()
         
         zoomInToLocation(mapView: self.storeMapView, coordinate: storeCoordinate, latMeters: 1000, longMeters: 1000)
-
-//        NetworkClient.getBusinessDetail(businessID: self.businessID) {
-//            result in
-//            switch result {
-//            case .success(let detailResponse):
-//                print(detailResponse)
-//                BusinessDetailModel.businessDetail = detailResponse
-//
-//                for imageUrl in BusinessDetailModel.businessDetail.photos {
-//                    self.downloadImage(urlString: imageUrl)
-//                }
-//
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
         
     }
     
@@ -111,19 +96,16 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
             NSLog("Can't open with Google Map")
         }
     }
-        
-    
     
     @IBAction func addToFavorites(_ sender: Any) {
        
-        // If the selected store is already in the favorite list, skip the add.
+        // If the selected store is already in the favorite list, remove from the favorite list.
         if favorite {
-//            let alertVC = UIAlertController(title: "Remove from Favorites?", message: "", preferredStyle: .alert)
-//            alertVC.addAction(UIAlertAction(title: "OK", style: .default) {
-//
-//                let favoriteToDelete = self.stores[]
-//
-//            }
+//            DataController.shared.viewContext.delete(self.store)
+//            try? DataController.shared.viewContext.save()
+//            favorite = false
+//            favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
             return
         }
         
@@ -139,10 +121,10 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         try? DataController.shared.viewContext.save()
         
         favorite = true
+        favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
         
-        if favorite {
-            favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
-        }
+        
+
     }
     
     // MARK: Collection View Delegate

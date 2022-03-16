@@ -25,5 +25,4 @@ extension UIViewController {
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: latMeters, longitudinalMeters: longMeters)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-    
 }

@@ -16,17 +16,23 @@ class FavoritesListViewController: UITableViewController {
     
 //    var store: Store!
     
+
+    
     override func viewDidLoad() {
-        let storeFetchRequest: NSFetchRequest<Store> = Store.fetchRequest()
-        
-        if let result = try? DataController.shared.viewContext.fetch(storeFetchRequest) {
-            stores = result
-        }
+        viewLoadSetUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        favoritesTableView.reloadData()
+        viewLoadSetUp()
+        self.favoritesTableView.reloadData()
+        
+    }
+    
+    fileprivate func viewLoadSetUp() {
+        let storeFetchRequest: NSFetchRequest<Store> = Store.fetchRequest()
+        if let result = try? DataController.shared.viewContext.fetch(storeFetchRequest) {
+            stores = result
+        }
     }
     
     func deleteStore(at: IndexPath) {
