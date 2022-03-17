@@ -81,7 +81,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         if let url = URL(string: BusinessDetailModel.businessDetail.url) {
             UIApplication.shared.open(url)
         } else {
-            showFailureMessage(title: "Can't Open a Website", message: "Website is not available.")
+            showFailureMessage(title: "Can't open a Website", message: "Website is not available.")
         }
     }
     
@@ -89,7 +89,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
             UIApplication.shared.open(URL(string:"comgooglemaps://?saddr=&daddr=\(self.storeCoordinate.latitude),\(self.storeCoordinate.longitude)&directionsmode=driving")!)
         } else {
-            showFailureMessage(title: "Can't open the Direction", message: "Google Maps is not available on this device.")
+            showFailureMessage(title: "Can't find the Direction", message: "Google Maps is not available on this device.")
         }
     }
     

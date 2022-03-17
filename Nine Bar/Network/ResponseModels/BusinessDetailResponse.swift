@@ -7,10 +7,6 @@
 
 import Foundation
 
-//struct Photo: Codable {
-//    let photo: String
-//}
-
 struct Hours: Codable {
     let isOpenNow: Bool
     
