@@ -13,18 +13,15 @@ class SearchCafeViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var locationTextfield: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     
-    var searchCoordinate: CLLocationCoordinate2D!
+    @IBOutlet weak var searchActivityIndicator: UIActivityIndicatorView!
     
-    // For test
-    override func viewDidLoad() {
-        locationTextfield.text = "Cupertino, CA"
-    }
+    var searchCoordinate: CLLocationCoordinate2D!
     
     @IBAction func tabSearchButton(_ sender: Any) {
         
-        setSearching(searching: true)
+        self.setSearching(searching: true)
         
-        // No string
+        // If there's no string in the text field
         if locationTextfield.text == "" {
             self.showFailureMessage(title: "Enter a Location", message: "Please enter a location or address.")
             setSearching(searching: false)
@@ -33,14 +30,12 @@ class SearchCafeViewController: UIViewController, MKMapViewDelegate {
         
         getCoordinate(addressString: locationTextfield.text ?? "") { (coordinate, error) in
             if error == nil {
-                print("coordinate found successfully.")
                 self.searchCoordinate = coordinate
                 
                 NetworkClient.getSearchResults(latitude: coordinate.latitude, longitude: coordinate.longitude) {
                     result in
                     switch result {
                     case .success(let searchResponse):
-                        print(searchResponse)
                         SearchResultsModel.businesses = searchResponse.businesses
                         self.performSegue(withIdentifier: "completeSearch", sender: nil)
                         
@@ -48,22 +43,22 @@ class SearchCafeViewController: UIViewController, MKMapViewDelegate {
                         print(error.localizedDescription)
                     }
                 }
-                
             } else {
                 self.showFailureMessage(title: "Invalid Location", message: "Please enter a valid location or address.")
                 self.setSearching(searching: false)
                 return
             }
+            self.setSearching(searching: false)
         }
-        
-        setSearching(searching: false)
     }
     
     func setSearching(searching: Bool){
         if searching {
+            searchActivityIndicator.startAnimating()
             locationTextfield.isEnabled = false
             searchButton.isEnabled = false
         } else {
+            searchActivityIndicator.stopAnimating()
             locationTextfield.isEnabled = true
             searchButton.isEnabled = true
         }
@@ -89,5 +84,4 @@ class SearchCafeViewController: UIViewController, MKMapViewDelegate {
         let resultsMapVC = navVC.topViewController as! ResultsMapViewController
         resultsMapVC.resultCoordinate = self.searchCoordinate
     }
-    
 }

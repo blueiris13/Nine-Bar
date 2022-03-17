@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 class CafeDetailCollectionViewCell: UICollectionViewCell{
     
     @IBOutlet weak var imageContentView: UIView!

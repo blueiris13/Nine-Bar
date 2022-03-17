@@ -14,9 +14,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
 
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var closeButton: UIBarButtonItem!
-    
-    @IBOutlet weak var pageView: UIPageControl!
-    
+        
     @IBOutlet weak var storeProfileImageView: UIImageView!
     
     @IBOutlet weak var businessName: UILabel!
@@ -33,9 +31,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     var favorite: Bool = false
     
     var stores = [Store]()
-    
-    var store: Store!
-    
+        
     var storeCoordinate: CLLocationCoordinate2D!
     
     override func viewDidLoad() {
@@ -49,7 +45,6 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
         for store in stores {
             if store.id == businessID {
-                self.store = store
                 favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
                 favorite = true
             }
@@ -85,15 +80,16 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func openStoreWebsite(_ sender: Any) {
         if let url = URL(string: BusinessDetailModel.businessDetail.url) {
             UIApplication.shared.open(url)
+        } else {
+            showFailureMessage(title: "Can't Open a Website", message: "Website is not available.")
         }
     }
     
     @IBAction func getDirection(_ sender: Any) {
-        
         if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
             UIApplication.shared.open(URL(string:"comgooglemaps://?saddr=&daddr=\(self.storeCoordinate.latitude),\(self.storeCoordinate.longitude)&directionsmode=driving")!)
         } else {
-            NSLog("Can't open with Google Map")
+            showFailureMessage(title: "Can't open the Direction", message: "Google Maps is not available on this device.")
         }
     }
     
@@ -101,30 +97,22 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
        
         // If the selected store is already in the favorite list, remove from the favorite list.
         if favorite {
-//            DataController.shared.viewContext.delete(self.store)
-//            try? DataController.shared.viewContext.save()
-//            favorite = false
-//            favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
             return
+        } else {
+            let store = Store(context: DataController.shared.viewContext)
+        
+            // Save the business id, name, and profile image
+            store.id = BusinessDetailModel.businessDetail.id
+            store.name = BusinessDetailModel.businessDetail.name
+            
+            let imageData = self.storeProfileImageView.image?.pngData()
+            store.image = imageData
+            
+            try? DataController.shared.viewContext.save()
+            
+            favorite = true
+            favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
         }
-        
-        let store = Store(context: DataController.shared.viewContext)
-        
-        // Save the business id, name, and profile image
-        store.id = BusinessDetailModel.businessDetail.id
-        store.name = BusinessDetailModel.businessDetail.name
-        
-        let imageData = self.storeProfileImageView.image?.pngData()
-        store.image = imageData
-        
-        try? DataController.shared.viewContext.save()
-        
-        favorite = true
-        favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
-        
-        
-
     }
     
     // MARK: Collection View Delegate
@@ -145,6 +133,7 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     // MARK: Map View related functions
     
     private func createCoordinate() -> CLLocationCoordinate2D {
+        
         let lat = CLLocationDegrees(BusinessDetailModel.businessDetail.coordinates.latitude)
         let long = CLLocationDegrees(BusinessDetailModel.businessDetail.coordinates.longitude)
         
@@ -154,9 +143,9 @@ class CafeDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     private func addAnnotation(){
+        
         let annotation = MKPointAnnotation()
         annotation.coordinate = self.storeCoordinate
-        
         self.storeMapView.addAnnotation(annotation)
     }
 }

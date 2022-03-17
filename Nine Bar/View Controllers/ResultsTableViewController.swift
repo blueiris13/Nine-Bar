@@ -14,15 +14,12 @@ class ResultsTableViewController: UITableViewController {
     
     var selectedBusinessID: String!
     
+    let resultTableCellIdentifier: String = "businessResultsCell"
+    
     func convertMeterToMile(distanceInMeters: Double) -> Double {
         let distanceInMiles = distanceInMeters * 0.000621
         return distanceInMiles
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let detailVC = segue.destination as! CafeDetailViewController
-//        detailVC.businessID = self.selectedBusinessID
-//    }
     
     // MARK: Tableview Delegate
     
@@ -31,11 +28,11 @@ class ResultsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "businessResultsCell", for: indexPath) as! BusinessResultsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.resultTableCellIdentifier, for: indexPath) as! BusinessResultsCell
         
         let businessInfo = SearchResultsModel.businesses[(indexPath as NSIndexPath).row]
         
-        
+        cell.businessImageView.image = UIImage(named: "placeholder image")
         let url = URL(string: businessInfo.imageUrl)
         cell.businessImageView.kf.setImage(with: url)
         
@@ -59,7 +56,6 @@ class ResultsTableViewController: UITableViewController {
         
         let businessInfo = SearchResultsModel.businesses[(indexPath as NSIndexPath).row]
         self.selectedBusinessID = businessInfo.id
-        print(self.selectedBusinessID)
         
         NetworkClient.getBusinessDetail(businessID: self.selectedBusinessID) {
                 result in

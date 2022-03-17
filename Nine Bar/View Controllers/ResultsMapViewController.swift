@@ -18,8 +18,6 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("segue successful")
-        print(self.resultCoordinate)
         
         zoomInToLocation(mapView: self.resultsMapView, coordinate: self.resultCoordinate, latMeters: 3000, longMeters: 3000)
         self.addAnnotions(businessesLocations: SearchResultsModel.businesses)
@@ -57,22 +55,13 @@ class ResultsMapViewController: UIViewController, MKMapViewDelegate{
             result in
             switch result {
             case .success(let detailResponse):
-                print("request successful!!!")
-                print(detailResponse)
                 BusinessDetailModel.businessDetail = detailResponse
                 self.performSegue(withIdentifier: "showBusinessDetail", sender: nil)
-
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
         resultsMapView.deselectAnnotation(view.annotation, animated: true)
     }
-        
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let detailVC = segue.destination as! CafeDetailViewController
-//        detailVC.businessID = self.selectedBusinessID
-//    }
-        
-
 }

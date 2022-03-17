@@ -9,5 +9,4 @@ import Foundation
 
 class SearchResultsModel {
     static var businesses = [BusinessInfo]()
-    
 }

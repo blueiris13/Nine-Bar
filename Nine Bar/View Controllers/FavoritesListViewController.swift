@@ -12,11 +12,10 @@ import CoreData
 class FavoritesListViewController: UITableViewController {
     
     @IBOutlet var favoritesTableView: UITableView!
+    
+    let favoriteTableCellIdentifier: String = "favoriteCell"
+    
     var stores = [Store]()
-    
-//    var store: Store!
-    
-
     
     override func viewDidLoad() {
         viewLoadSetUp()
@@ -25,7 +24,6 @@ class FavoritesListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         viewLoadSetUp()
         self.favoritesTableView.reloadData()
-        
     }
     
     fileprivate func viewLoadSetUp() {
@@ -51,7 +49,7 @@ class FavoritesListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritesCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.favoriteTableCellIdentifier, for: indexPath) as! FavoritesCell
         
         if self.stores.count != 0 {
             let store = self.stores[(indexPath as NSIndexPath).row]
